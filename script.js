@@ -1,7 +1,7 @@
 //https://www.weatherapi.com/
 //todo: tahmin -> ileri yönelik --->>>> (done)
-//todo: favori şehir eklemek (arge).
-//todo: ilk yüklendiği zaman favori şehri gösterme.
+//todo: favori şehir eklemek (arge).--->>>> (done)
+//todo: ilk yüklendiği zaman favori şehri gösterme.--->>>> (done)
 //todo: ilk yüklendiği zaman querystringden ilgili şehri gösterme -> http://localhost:5500/?city=istanbul --->>>> (done)
 //todo: css ekleyelim... güzelleştirelim. --->>>> (done)
 
@@ -21,8 +21,8 @@ let weather_api = {
       redirect: "follow",
     };
     try {
-      let result = await fetch(`http://api.weatherapi.com/v1/current.json?key=${api_key_weatherapi}&q=${city}&aqi=yes`,requestOptions)
-      .then((response) => response.text());
+      let result = await fetch(`http://api.weatherapi.com/v1/current.json?key=${api_key_weatherapi}&q=${city}&aqi=yes`, requestOptions)
+        .then((response) => response.text());
       result = JSON.parse(result);
       return result;
     } catch (error) {
@@ -49,16 +49,16 @@ let weather_api = {
     }
   },
   dtoFunctions: {
-    getCurrentWeather: async function(city){
-        let return_value = await weather_api.getCurrentWeather(city);
-        let result = {
-            temp :      return_value.current.temp_c,
-            img :       return_value.current.condition.icon,
-            img_text:   return_value.current.condition.text,
-            last_update:return_value.current.last_updated
-        }
+    getCurrentWeather: async function (city) {
+      let return_value = await weather_api.getCurrentWeather(city);
+      let result = {
+        temp: return_value.current.temp_c,
+        img: return_value.current.condition.icon,
+        img_text: return_value.current.condition.text,
+        last_update: return_value.current.last_updated
+      }
 
-        return result;
+      return result;
     }
   }
 };
@@ -71,66 +71,62 @@ async function btnClick(event) {
   }
   let result = await weather_api.dtoFunctions.getCurrentWeather(city);
   third_way(result);
-  let  resetElement = document.getElementById('weather-forecast');
+  let resetElement = document.getElementById('weather-forecast');
   resetElement.innerHTML = '';
-  let futureData= get5DaysForcastDataWeather(city);
+  let futureData = get5DaysForcastDataWeather(city);
   console.log(result);
   console.log(futureData);
 }
-function third_way(dtoCurrentWeatherObject){
-  derece_dom.innerText = dtoCurrentWeatherObject.temp+ " derece";
-  lastUpdate_dom.innerText ="Son Güncelleme : " + dtoCurrentWeatherObject.last_update;
+function third_way(dtoCurrentWeatherObject) {
+  derece_dom.innerText = dtoCurrentWeatherObject.temp + " derece";
+  lastUpdate_dom.innerText = "Son Güncelleme : " + dtoCurrentWeatherObject.last_update;
   img_dom.src = dtoCurrentWeatherObject.img;
   imgText_dom.innerText = dtoCurrentWeatherObject.img_text;
 }
 
 
-function generateHtml(dtoCurrentWeatherObject){
-    let generatedDataDiv = document.getElementById('generatedData');
-    generatedDataDiv.innerHTML = '';
+function generateHtml(dtoCurrentWeatherObject) {
+  let generatedDataDiv = document.getElementById('generatedData');
+  generatedDataDiv.innerHTML = '';
 
-    let derece_text =  dtoCurrentWeatherObject.temp+ " derece";
-    let last_update = "Son Güncelleme : " + dtoCurrentWeatherObject.last_update;
-    let temp = `
+  let derece_text = dtoCurrentWeatherObject.temp + " derece";
+  let last_update = "Son Güncelleme : " + dtoCurrentWeatherObject.last_update;
+  let temp = `
     <div>${derece_text}</div>
     <div>${last_update}</div>
     <img src="${dtoCurrentWeatherObject.img}"/>
     <div>${dtoCurrentWeatherObject.img_text}</div>`;
-    
-    generatedDataDiv.innerHTML = temp;
+
+  generatedDataDiv.innerHTML = temp;
 
 }
 
-function generateCityDom(dtoCurrentWeatherObject){
-    //clear dom....
-    let generatedDataDiv = document.getElementById('generatedData');
-    generatedDataDiv.innerHTML = '';
+function generateCityDom(dtoCurrentWeatherObject) {
+  //clear dom....
+  let generatedDataDiv = document.getElementById('generatedData');
+  generatedDataDiv.innerHTML = '';
 
-    //put data in dom
-    let dataTempDiv = document.createElement("div");
-    dataTempDiv.innerText = dtoCurrentWeatherObject.temp+ " derece";
-    generatedDataDiv.appendChild(dataTempDiv);
+  //put data in dom
+  let dataTempDiv = document.createElement("div");
+  dataTempDiv.innerText = dtoCurrentWeatherObject.temp + " derece";
+  generatedDataDiv.appendChild(dataTempDiv);
 
-    let dataLastUpdateDiv = document.createElement("div");
-    dataLastUpdateDiv.innerText ="Son Güncelleme : " + dtoCurrentWeatherObject.last_update;
-    generatedDataDiv.appendChild(dataLastUpdateDiv);
+  let dataLastUpdateDiv = document.createElement("div");
+  dataLastUpdateDiv.innerText = "Son Güncelleme : " + dtoCurrentWeatherObject.last_update;
+  generatedDataDiv.appendChild(dataLastUpdateDiv);
 
-    let dataImg = document.createElement("img");
-    dataImg.src = dtoCurrentWeatherObject.img;
-    dataImg.addEventListener('click', ()=>{
-        console.log('img clicked');
-    })
-    generatedDataDiv.appendChild(dataImg);
+  let dataImg = document.createElement("img");
+  dataImg.src = dtoCurrentWeatherObject.img;
+  dataImg.addEventListener('click', () => {
+    console.log('img clicked');
+  })
+  generatedDataDiv.appendChild(dataImg);
 
-    let dataImgTextDiv = document.createElement("div");
-    dataImgTextDiv.innerText = dtoCurrentWeatherObject.img_text;
-    generatedDataDiv.appendChild(dataImgTextDiv);
+  let dataImgTextDiv = document.createElement("div");
+  dataImgTextDiv.innerText = dtoCurrentWeatherObject.img_text;
+  generatedDataDiv.appendChild(dataImgTextDiv);
 
 }
-
-
-
-
 async function get5DaysForcastDataWeather(city) {
   const days = 8;
   let datato5Days = await weather_api.getForcastDataWeather(city, days, aqi = "yes", alerts = "yes");
@@ -142,15 +138,15 @@ async function get5DaysForcastDataWeather(city) {
   headerDiv.classList.add('rowDiv', 'headerRow');
 
   let headerDate = document.createElement('div');
-  headerDate.classList='title'
+  headerDate.classList = 'title'
   let headerMaxtemp_c = document.createElement('div');
-  headerMaxtemp_c.classList='title'
+  headerMaxtemp_c.classList = 'title'
   let headerMintemp_c = document.createElement('div');
-  headerMintemp_c.classList='title'
+  headerMintemp_c.classList = 'title'
   let headerImg = document.createElement('div');
-  headerImg.classList='title'
+  headerImg.classList = 'title'
   let headerImg_text = document.createElement('div');
-  headerImg_text.classList='title'
+  headerImg_text.classList = 'title'
 
   headerDate.textContent = "Date";
   headerMaxtemp_c.textContent = "Max Temperature";
@@ -190,7 +186,7 @@ async function get5DaysForcastDataWeather(city) {
 
     tableDiv.appendChild(rowDiv);
   }
-  let addDiv= document.getElementById("weather-forecast");
+  let addDiv = document.getElementById("weather-forecast");
   addDiv.appendChild(tableDiv);
 }
 
@@ -204,8 +200,8 @@ async function showCityFromQueryString() {
     const city = urlParams.get('city');
     let text = document.getElementById('txtCity');
     text.value = city;
-  
-    let button = document.getElementById('btnSend'); 
+
+    let button = document.getElementById('btnSend');
     if (button) {
       button.click();
     }
@@ -217,7 +213,7 @@ function showFavoriteCityOnLoad() {
   if (favoriteCity) {
     let text = document.getElementById('txtCity');
     text.value = favoriteCity;
-    let button = document.getElementById('btnSend'); 
+    let button = document.getElementById('btnSend');
     if (button) {
       button.click();
     }
@@ -238,17 +234,12 @@ function addFavoriteCity() {
   }
 }
 
-
-
-
-
-
 document.addEventListener("DOMContentLoaded", async () => {
-    console.log("Dom loaded");
-    derece_dom = document.getElementById('derece');
-    lastUpdate_dom = document.getElementById('lastUpdate');
-    img_dom = document.getElementById('img');
-    imgText_dom = document.getElementById('imgText');
-    showCityFromQueryString();
-    showFavoriteCityOnLoad();
+  console.log("Dom loaded");
+  derece_dom = document.getElementById('derece');
+  lastUpdate_dom = document.getElementById('lastUpdate');
+  img_dom = document.getElementById('img');
+  imgText_dom = document.getElementById('imgText');
+  showCityFromQueryString();
+  showFavoriteCityOnLoad();
 });
