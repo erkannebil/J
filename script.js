@@ -85,11 +85,48 @@ function third_way(dtoCurrentWeatherObject){
 }
 
 
+function generateHtml(dtoCurrentWeatherObject){
+    let generatedDataDiv = document.getElementById('generatedData');
+    generatedDataDiv.innerHTML = '';
 
+    let derece_text =  dtoCurrentWeatherObject.temp+ " derece";
+    let last_update = "Son Güncelleme : " + dtoCurrentWeatherObject.last_update;
+    let temp = `
+    <div>${derece_text}</div>
+    <div>${last_update}</div>
+    <img src="${dtoCurrentWeatherObject.img}"/>
+    <div>${dtoCurrentWeatherObject.img_text}</div>`;
+    
+    generatedDataDiv.innerHTML = temp;
 
+}
 
+function generateCityDom(dtoCurrentWeatherObject){
+    //clear dom....
+    let generatedDataDiv = document.getElementById('generatedData');
+    generatedDataDiv.innerHTML = '';
 
+    //put data in dom
+    let dataTempDiv = document.createElement("div");
+    dataTempDiv.innerText = dtoCurrentWeatherObject.temp+ " derece";
+    generatedDataDiv.appendChild(dataTempDiv);
 
+    let dataLastUpdateDiv = document.createElement("div");
+    dataLastUpdateDiv.innerText ="Son Güncelleme : " + dtoCurrentWeatherObject.last_update;
+    generatedDataDiv.appendChild(dataLastUpdateDiv);
+
+    let dataImg = document.createElement("img");
+    dataImg.src = dtoCurrentWeatherObject.img;
+    dataImg.addEventListener('click', ()=>{
+        console.log('img clicked');
+    })
+    generatedDataDiv.appendChild(dataImg);
+
+    let dataImgTextDiv = document.createElement("div");
+    dataImgTextDiv.innerText = dtoCurrentWeatherObject.img_text;
+    generatedDataDiv.appendChild(dataImgTextDiv);
+
+}
 
 
 
@@ -175,56 +212,34 @@ async function showCityFromQueryString() {
   }
 }
 
+function showFavoriteCityOnLoad() {
+  const favoriteCity = getFavoriteCity();
+  if (favoriteCity) {
+    let text = document.getElementById('txtCity');
+    text.value = favoriteCity;
+    let button = document.getElementById('btnSend'); 
+    if (button) {
+      button.click();
+    }
+  }
+}
+function getFavoriteCity() {
+  return localStorage.getItem('favoriteCity');
+}
+function addFavoriteCity() {
+  const cityInput = document.getElementById('txtFavoriteCity');
+  let favoriteCity = cityInput.value.trim();
 
-
-
-
-
-
-
-
-function generateHtml(dtoCurrentWeatherObject){
-    let generatedDataDiv = document.getElementById('generatedData');
-    generatedDataDiv.innerHTML = '';
-
-    let derece_text =  dtoCurrentWeatherObject.temp+ " derece";
-    let last_update = "Son Güncelleme : " + dtoCurrentWeatherObject.last_update;
-    let temp = `
-    <div>${derece_text}</div>
-    <div>${last_update}</div>
-    <img src="${dtoCurrentWeatherObject.img}"/>
-    <div>${dtoCurrentWeatherObject.img_text}</div>`;
-    
-    generatedDataDiv.innerHTML = temp;
-
+  if (favoriteCity !== "") {
+    localStorage.setItem('favoriteCity', favoriteCity);
+    alert('Favori şehir başarıyla eklendi: ' + favoriteCity);
+  } else {
+    alert('Lütfen bir şehir adı girin.');
+  }
 }
 
-function generateCityDom(dtoCurrentWeatherObject){
-    //clear dom....
-    let generatedDataDiv = document.getElementById('generatedData');
-    generatedDataDiv.innerHTML = '';
 
-    //put data in dom
-    let dataTempDiv = document.createElement("div");
-    dataTempDiv.innerText = dtoCurrentWeatherObject.temp+ " derece";
-    generatedDataDiv.appendChild(dataTempDiv);
 
-    let dataLastUpdateDiv = document.createElement("div");
-    dataLastUpdateDiv.innerText ="Son Güncelleme : " + dtoCurrentWeatherObject.last_update;
-    generatedDataDiv.appendChild(dataLastUpdateDiv);
-
-    let dataImg = document.createElement("img");
-    dataImg.src = dtoCurrentWeatherObject.img;
-    dataImg.addEventListener('click', ()=>{
-        console.log('img clicked');
-    })
-    generatedDataDiv.appendChild(dataImg);
-
-    let dataImgTextDiv = document.createElement("div");
-    dataImgTextDiv.innerText = dtoCurrentWeatherObject.img_text;
-    generatedDataDiv.appendChild(dataImgTextDiv);
-
-}
 
 
 
@@ -235,4 +250,5 @@ document.addEventListener("DOMContentLoaded", async () => {
     img_dom = document.getElementById('img');
     imgText_dom = document.getElementById('imgText');
     showCityFromQueryString();
+    showFavoriteCityOnLoad();
 });
