@@ -1,10 +1,10 @@
 //https://www.weatherapi.com/
-//todo: tahmin -> ileri yönelik 
+//todo: tahmin -> ileri yönelik --->>>> (done)
 //todo: favori şehir eklemek (arge).
-//todo: api.weatherapi.com burdaki başka bir endpoint i eklemek.
-//todo: ilk yüklendiği zaman favori şehri gösterme
-//todo: ilk yüklendiği zaman querystringden ilgili şehri gösterme -> http://localhost:5500/?city=istanbul
-//todo: css ekleyelim... güzelleştirelim.
+//todo: ilk yüklendiği zaman favori şehri gösterme.
+//todo: ilk yüklendiği zaman querystringden ilgili şehri gösterme -> http://localhost:5500/?city=istanbul --->>>> (done)
+//todo: css ekleyelim... güzelleştirelim. --->>>> (done)
+
 
 //globals
 let api_key_weatherapi = "0f9bce7e09204105842165055242401";
@@ -70,11 +70,12 @@ async function btnClick(event) {
     alert("boş şehir ismi girilemez");
   }
   let result = await weather_api.dtoFunctions.getCurrentWeather(city);
+  third_way(result);
   let  resetElement = document.getElementById('weather-forecast');
   resetElement.innerHTML = '';
   let futureData= get5DaysForcastDataWeather(city);
-  third_way(result);
   console.log(result);
+  console.log(futureData);
 }
 function third_way(dtoCurrentWeatherObject){
   derece_dom.innerText = dtoCurrentWeatherObject.temp+ " derece";
@@ -157,7 +158,22 @@ async function get5DaysForcastDataWeather(city) {
 }
 
 
+async function showCityFromQueryString() {
 
+  const queryString = window.location.search;
+  const urlParams = new URLSearchParams(queryString);
+
+  if (urlParams.has('city')) {
+    const city = urlParams.get('city');
+    let text = document.getElementById('txtCity');
+    text.value = city;
+  
+    let button = document.getElementById('btnSend'); 
+    if (button) {
+      button.click();
+    }
+  }
+}
 
 
 
@@ -218,4 +234,5 @@ document.addEventListener("DOMContentLoaded", async () => {
     lastUpdate_dom = document.getElementById('lastUpdate');
     img_dom = document.getElementById('img');
     imgText_dom = document.getElementById('imgText');
+    showCityFromQueryString();
 });
