@@ -1,33 +1,21 @@
-<!-- buradaki hiçbir şeyi değiştirmeyin -->
-<html>
-  <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link
-      href="https://fonts.googleapis.com/css?family=Roboto&display=swap"
-      rel="stylesheet"
-    />
-    <script
-      src="https://kit.fontawesome.com/5b12ffad4b.js"
-      crossorigin="anonymous"
-    ></script>
-    <link rel="stylesheet" href="./index.css" />
-  </head>
-  <body>
-    <div class="container">
-      <div class="header">
-        <img
-          src="https://i.ibb.co/WVHgq2n/ergineerlogo.png"
-          alt="Ergineer Logo"
-        />
-        <p><i class="fa-solid fa-heart"></i>'s</p>
-        <img
-          src="https://i.ibb.co/NmHGnkN/workintechlogo.png"
-          alt="Workintech Logo"
-        />
-      </div>
-      <div class="cards"></div>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather</title>
+    <script src="script.js"></script>
+</head>
+<body>
+    <div id="app">
+        <input id="txtCity" type="text" placeholder="şehir ismi giriniz"/>
+        <input id="btnSend" type="button" value="Gönder" onclick="btnClick(event)"/>
+        <div id="generatedData">
+            <div id="derece"></div>
+            <div id="lastUpdate"></div>
+            <img id="img" />
+            <div id="imgText"></div>
+        </div>
     </div>
-    <script type="module" src="./main.js"></script>
-  </body>
+</body>
 </html>
-<!-- buradaki hiçbir şeyi değiştirmeyin -->
