@@ -6,7 +6,7 @@
 <img width="1383" alt="image" src="https://github.com/erkannebil/Weather-Exercise-With-Api/assets/80630016/f2bc4fcf-02bf-49b1-8fde-f07efe8b6473">
 
 
+<img width="1373" alt="image" src="https://github.com/erkannebil/Weather-Exercise-With-Api/assets/80630016/fe9e6600-e5cd-428a-a826-40b1fd7f29f1">
 
-<img width="1408" alt="image" src="https://github.com/erkannebil/Weather-Exercise-With-Api/assets/80630016/4be5e180-9124-4f1b-9b10-5bbbb5d94306">
 
 
