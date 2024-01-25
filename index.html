@@ -1,21 +1,99 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Weather</title>
     <script src="script.js"></script>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+
 </head>
+
 <body>
-    <div id="app">
-        <input id="txtCity" type="text" placeholder="şehir ismi giriniz"/>
-        <input id="btnSend" type="button" value="Gönder" onclick="btnClick(event)"/>
-        <div id="generatedData">
-            <div id="derece"></div>
-            <div id="lastUpdate"></div>
-            <img id="img" />
-            <div id="imgText"></div>
+
+    <div id="customNavbar">
+        <nav class="navbar navbar-light" style="background-color: #f50057;">
+            <a class="navbar-brand" href="#">
+                <img src="img/cart1.png" width="30" style="color: white;" height="30" class="d-inline-block align-top"
+                    alt="">
+                WeatherCity
+            </a>
+        </nav>
+    </div>
+
+    <div class="main">
+        <section class="mainPage">
+            <section class="openSection">
+                <div class="openSection-leftside">
+                    <h2 class=".text-warning h-auto w-auto p-3 font-italic text-center"
+                        style="color: white; font-weight:bolder;">Control Your City! Before going
+                        out.
+                    </h2>
+                    <p class="w-auto p-3 font-weight-bold text-center" style="color: white; font-weight:bolder;">
+                        We are here to provide you with the most accurate weather
+                        forecasts around the world, and to help with clothing and event planning.
+                        Now you won't waste much time getting dressed incorrectly or making plans
+                        when going out.
+                    </p>
+                </div>
+    </div>
+
+    <div class="card-group">
+        <div class="card-parts">
+            <img src="img/cart3.png" width="411px" height="245px" alt="...">
+            <div class="card-body">
+                <h5 class="card-title">Planning made easy.</h5>
+                <p class="card-text">
+                    WheatherCity is the fastest and easiest way to smell the air before you go out.
+                </p>
+            </div>
+        </div>
+        <div class="card-parts">
+            <div class="card-body">
+                <h5 class="card-title">We are with you every moment of the day.</h5>
+                <p class="card-text">
+                    With Wheathercity, we are here to help you spend your day more productively at every moment of
+                    the day.
+                </p>
+            </div>
+            <img src="img/cart2.png" width="411px" height="245px" alt="...">
         </div>
     </div>
+
+
+
+        <section class="section-container">
+            <div id="weatherSection">
+                <div class="app">
+                    <div class="button-part">
+                        <input id="txtCity" type="text" placeholder="Choose your City" />
+                        <input id="btnSend" asp-controller="Meeting" asp-action="Index" style="background-color: #f50057;"
+                            class="btn ext-white fs-bolt" role="button" type="button" value="Submit"
+                            onclick="btnClick(event)" />
+                    </div>
+                    <div id="generatedData">
+                        <div id="derece"></div>
+                        <div id="lastUpdate"></div>
+                        <img id="img" />
+                        <div id="imgText"></div>
+                    </div>
+    
+                </div>
+            </div>
+        </section>
+
+
+
+
+
+
+
+
+
+
+   
 </body>
+
 </html>

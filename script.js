@@ -70,13 +70,10 @@ async function btnClick(event) {
     alert("boş şehir ismi girilemez");
   }
   let result = await weather_api.dtoFunctions.getCurrentWeather(city);
-  //generateCityDom(result);
-  //generateHtml(result);
   third_way(result);
   console.log(result);
 }
 function third_way(dtoCurrentWeatherObject){
-  //put data in dom
   derece_dom.innerText = dtoCurrentWeatherObject.temp+ " derece";
   lastUpdate_dom.innerText ="Son Güncelleme : " + dtoCurrentWeatherObject.last_update;
   img_dom.src = dtoCurrentWeatherObject.img;
@@ -135,8 +132,4 @@ document.addEventListener("DOMContentLoaded", async () => {
     lastUpdate_dom = document.getElementById('lastUpdate');
     img_dom = document.getElementById('img');
     imgText_dom = document.getElementById('imgText');
-  // weather_api.uzunluk => 10
-  //  let response_data = await weather_api.getForcastDataWeather("maltepe",3);
-  //  let json_weather_data = JSON.parse(response_data);
-  //  console.log(json_weather_data);
 });
