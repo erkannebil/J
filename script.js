@@ -70,6 +70,9 @@ async function btnClick(event) {
     alert("boş şehir ismi girilemez");
   }
   let result = await weather_api.dtoFunctions.getCurrentWeather(city);
+  let  resetElement = document.getElementById('weather-forecast');
+  resetElement.innerHTML = '';
+  let futureData= get5DaysForcastDataWeather(city);
   third_way(result);
   console.log(result);
 }
@@ -79,6 +82,89 @@ function third_way(dtoCurrentWeatherObject){
   img_dom.src = dtoCurrentWeatherObject.img;
   imgText_dom.innerText = dtoCurrentWeatherObject.img_text;
 }
+
+
+
+
+
+
+
+
+
+
+
+async function get5DaysForcastDataWeather(city) {
+  const days = 8;
+  let datato5Days = await weather_api.getForcastDataWeather(city, days, aqi = "yes", alerts = "yes");
+  let daysData = datato5Days.forecast.forecastday;
+  let tableDiv = document.createElement('div');
+  tableDiv.classList.add('tablesDiv');
+
+  let headerDiv = document.createElement('div');
+  headerDiv.classList.add('rowDiv', 'headerRow');
+
+  let headerDate = document.createElement('div');
+  headerDate.classList='title'
+  let headerMaxtemp_c = document.createElement('div');
+  headerMaxtemp_c.classList='title'
+  let headerMintemp_c = document.createElement('div');
+  headerMintemp_c.classList='title'
+  let headerImg = document.createElement('div');
+  headerImg.classList='title'
+  let headerImg_text = document.createElement('div');
+  headerImg_text.classList='title'
+
+  headerDate.textContent = "Date";
+  headerMaxtemp_c.textContent = "Max Temperature";
+  headerMintemp_c.textContent = "Min Temperature";
+  headerImg.textContent = "Condition Icon";
+  headerImg_text.textContent = "Condition Text";
+
+  headerDiv.appendChild(headerDate);
+  headerDiv.appendChild(headerMaxtemp_c);
+  headerDiv.appendChild(headerMintemp_c);
+  headerDiv.appendChild(headerImg);
+  headerDiv.appendChild(headerImg_text);
+
+  tableDiv.appendChild(headerDiv);
+
+  for (let i = 0; i < daysData.length; i++) {
+    let rowDiv = document.createElement('div');
+    rowDiv.classList.add('rowDiv');
+
+    let date = document.createElement('div');
+    let maxtemp_c = document.createElement('div');
+    let mintemp_c = document.createElement('div');
+    let img = document.createElement('div');
+    let img_text = document.createElement('div');
+
+    date.textContent = daysData[i].date;
+    maxtemp_c.textContent = daysData[i].day.maxtemp_c;
+    mintemp_c.textContent = daysData[i].day.mintemp_c;
+    img.innerHTML = `<img src="${daysData[i].day.condition.icon}" alt="${daysData[i].day.condition.text}" />`;
+    img_text.textContent = daysData[i].day.condition.text;
+
+    rowDiv.appendChild(date);
+    rowDiv.appendChild(maxtemp_c);
+    rowDiv.appendChild(mintemp_c);
+    rowDiv.appendChild(img);
+    rowDiv.appendChild(img_text);
+
+    tableDiv.appendChild(rowDiv);
+  }
+  let addDiv= document.getElementById("weather-forecast");
+  addDiv.appendChild(tableDiv);
+}
+
+
+
+
+
+
+
+
+
+
 
 
 function generateHtml(dtoCurrentWeatherObject){

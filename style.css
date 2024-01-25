@@ -215,22 +215,21 @@ body {
 
 .button-part {
 	display: flex;
-	flex-direction: column;
+	flex-direction: row;
 	align-items: flex-start;
-	margin-left: 20%;
-	margin-top: 200px;
 	gap: 30px;
 	width: auto;
+	margin: 15px;
 }
 
 #generatedData {
+	margin: 5px;
 	display: flex;
 	flex-direction: column;
-	align-items: flex-end;
-	margin-top: 200px;
-	margin-right: 20%;
-	gap: 30px;
-	width: auto;
+	align-items: center;
+	justify-content: space-between;
+	background-color: lightblue;
+	border-radius: 30px;
 }
 
 .mainPage {
@@ -248,15 +247,55 @@ body {
 
 
 .section-container {
-    text-align: center; 
-	padding: 50px;
-    border-radius: 15px; 
-    border: 10px solid #f50057; 
-    position: relative;
-    display: inline-block; 
+	text-align: center;
+	padding: 3px;
+	border-radius: 15px;
+	border: 10px solid #f50057;
+	position: relative;
+	flex-direction: row;
 	width: 90vw;
-	height:90vh ;
+	height: 90vh;
 	margin-left: 50px;
 	margin-top: 100px;
 	margin-bottom: 50px;
+	gap: 3px;
+}
+
+#weatherSection {
+	display: flex;
+	flex-direction: column;
+	margin: auto;
+	padding: auto;
+}
+
+.tablesDiv , #weather-forecast {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: space-between;
+	background-color: lightblue;
+	border-radius: 30px;
+	margin-bottom: 6px;
+}
+
+.rowDiv {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	gap: 50px;
+}
+
+.rowDiv>div {
+	width: 100px;
+	height: 50px;
+	text-align: center;
+}
+
+.title {
+	font-weight: bold;
+	text-decoration: underline;
+	font-style: italic;
+	text-align: center;
+	margin: 2px;
+
 }

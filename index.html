@@ -64,25 +64,31 @@
 
 
 
-        <section class="section-container">
-            <div id="weatherSection">
-                <div class="app">
-                    <div class="button-part">
-                        <input id="txtCity" type="text" placeholder="Choose your City" />
-                        <input id="btnSend" asp-controller="Meeting" asp-action="Index" style="background-color: #f50057;"
-                            class="btn ext-white fs-bolt" role="button" type="button" value="Submit"
-                            onclick="btnClick(event)" />
-                    </div>
-                    <div id="generatedData">
-                        <div id="derece"></div>
-                        <div id="lastUpdate"></div>
-                        <img id="img" />
-                        <div id="imgText"></div>
-                    </div>
-    
-                </div>
+    <section class="section-container">
+        <div id="weatherSection">
+            <div class="button-part">
+                <input id="txtCity" type="text" placeholder="Choose your City" />
+                <input id="btnSend" asp-controller="Meeting" asp-action="Index" style="background-color: #f50057;"
+                    class="btn ext-white fs-bolt" role="button" type="button" value="Submit"
+                    onclick="btnClick(event)" />
             </div>
-        </section>
+            <div id="generatedData">
+                <div id="derece"></div>
+                <div id="lastUpdate"></div>
+                <img id="img" />
+                <div id="imgText"></div>
+            </div>
+        </div>
+        <div id="weather-forecast">
+        </div>
+
+
+
+
+
+
+
+    </section>
 
 
 
@@ -93,7 +99,7 @@
 
 
 
-   
+
 </body>
 
 </html>
